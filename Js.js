@@ -47,7 +47,7 @@ buttest.addEventListener("click", function(e){
     var elem = document.querySelectorAll("option")
 
 
-    if(regTest(a,b)){
+    if(!(isNaN(a)&&isNaN(b))){
     
 
     if(options.selectedIndex == 0 )

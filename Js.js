@@ -19,17 +19,15 @@ document.querySelector("#cal").appendChild(calOp)
 
 for (i = 0; i < 5; i++) {
 
-    if (i < 4) {
-        var but1 = document.createElement("div")
-        but1.setAttribute("class", "opera" + i)
-        but1.style.width = "100px"
-        but1.style.height = "80px"
-        but1.style.margin = "10px"
-        but1.style.backgroundColor = "orange"
-        but1.style.textAlign = "center"
-        but1.style.fontSize = "2em"
-        calOp.appendChild(but1)
-    }
+    var but1 = document.createElement("div")
+    but1.setAttribute("class", "opera" + i)
+    but1.style.width = "100px"
+    but1.style.height = "50px"
+    but1.style.margin = "20px"
+    but1.style.backgroundColor = "orange"
+    but1.style.textAlign = "center"
+    but1.style.fontSize = "2em"
+    calOp.appendChild(but1)
 
 }
 
@@ -38,6 +36,8 @@ o[0].textContent = "+"
 o[1].textContent = "-"
 o[2].textContent = "*"
 o[3].textContent = "/"
+o[4].textContent = "="
+o[4].style.backgroundColor = "yellow"
 
 
 
@@ -47,7 +47,7 @@ calNb.style.display = "flex"
 document.querySelector("#cal").appendChild(calNb)
 
 
-for (i = 0; i < 12; i++) {
+for (i = 0; i < 11; i++) {
 
     var but11 = document.createElement("div")
     but11.style.width = "100px"
@@ -70,10 +70,6 @@ for (i = 0; i < 12; i++) {
         calNb.appendChild(but11)
 
     } else if (i == 11) {
-        but11.setAttribute("class", "butEnt")
-        but11.textContent = "="
-        but11.style.backgroundColor = "yellow"
-        calNb.appendChild(but11)
 
     }
 
@@ -157,7 +153,7 @@ function numbListn() {
 
                     recup = 0
                     ob.clear()
-                    affiche.textContent = ""
+                    affiche.textContent = 0
 
 
                 } else {
@@ -234,6 +230,14 @@ function operListn() {
                 ob.c = 3
                 recup = 0
                 affiche.textContent = ob.a.toString()
+
+            }
+            if (op.textContent == "=") {
+
+                ob.calc()
+                affiche.textContent = ob.a.toString()
+                recup = 0
+                ob.clear()
 
             }
 

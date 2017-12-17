@@ -47,7 +47,7 @@ calNb.style.display = "flex"
 document.querySelector("#cal").appendChild(calNb)
 
 
-for (i = 0; i < 11; i++) {
+for (i = 0; i < 12; i++) {
 
     var but11 = document.createElement("div")
     but11.style.width = "100px"
@@ -70,7 +70,10 @@ for (i = 0; i < 11; i++) {
         calNb.appendChild(but11)
 
     } else if (i == 11) {
-
+        but11.setAttribute("class", "virg")
+        but11.textContent = "."
+        but11.style.backgroundColor = "green"
+        calNb.appendChild(but11)
     }
 
 }

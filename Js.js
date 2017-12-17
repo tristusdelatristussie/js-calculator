@@ -4,7 +4,7 @@ var buttest = document.querySelector("#butest")
 var cal = document.createElement("div")
 cal.setAttribute("id", "cal")
 cal.style.display = "flex"
-document.querySelector("button").after(cal)
+document.querySelector("body").after(cal)
 
 
 //J aurai aimé creer une div supplementaires une fois sur 3 dans la boucle et ajouter clear et entrée dedans aussi
@@ -96,14 +96,52 @@ var division = function(a, b) {
     return a / b
 }
 
+
+
+
+var ob = {
+
+    a: 0,
+    b: 0,
+    c: 0,
+    calc: function() {
+
+        if (this.c == 0) {
+            this.a = parseFloat(addition(this.a, this.b))
+            console.log("ob.cal = " + this.a)
+            this.b = 0
+        }
+        if (this.c == 1) {
+            this.a = soustraction(this.a, this.b)
+            console.log("ob.cal = " + this.a)
+            this.b = 0
+        }
+        if (this.c == 2) {
+            this.a = multiplication(this.a, this.b)
+            console.log("ob.cal = " + this.a)
+            this.b = 0
+        }
+        if (this.c == 3) {
+            this.a = division(this.a, this.b)
+            console.log("ob.cal = " + this.a)
+            this.b = 0
+        }
+    },
+    clear: function() {
+        this.a = 0
+        this.b = 0
+        this.c = 0
+
+
+    }
+
+}
+
+
 //nombres et verif signe
 
-var memA = 0
-var memB = 0
 var recup = result.textContent
 var affiche = document.getElementById("resultat")
-var resu = 0
-var signe = 4
 
 var numbers = document.getElementById("calNb").childNodes
 
@@ -117,80 +155,19 @@ function numbListn() {
 
                 if (e.target.textContent == "Clear") {
 
-                    memA = 0
-                    memB = 0
                     recup = 0
-                    signe = 4
+                    ob.clear()
+                    affiche.textContent = ""
 
-                    affiche = 0
 
                 } else {
 
                     recup += e.target.textContent
-
-                    affiche.textContent += e.target.textContent
-
-                    console.log(" recup " + recup)
+                    result.textContent = recup
+                    console.log(" recup " + result.textContent)
 
                 }
 
-                memB = parseFloat(recup)
-
-
-
-
-                if (signe == 0) {
-
-                    memA = addition(parseFloat(memA), memB)
-                    console.log(" result dans numbListn " + memA)
-                    recup = 0
-
-                    affiche.textContent = memA
-
-
-                }
-                if (signe == 1) {
-
-                    memA = soustraction(parseFloat(memA), memB)
-                    console.log(" result dans numbListn " + memA)
-                    recup = 0
-
-                    affiche.textContent = memA
-
-
-                }
-
-                if (signe == 2) {
-
-                    memA = multiplication(parseFloat(memA), memB)
-                    console.log(" result dans numbListn " + memA)
-                    recup = 0
-
-                    affiche.textContent = memA
-
-
-                }
-
-                if (signe == 3 && memB != 0) {
-
-
-                    memA = division(parseFloat(memA), memB)
-                    console.log(" result dans numbListn " + memA)
-                    recup = 0
-
-
-
-                } else if (signe == 3 && memB == 0) {
-                    console.log("Erreur pas de division par zero")
-                }
-
-
-                if (signe == 4) {
-
-                    memA = memB
-                    console.log(" result dans numbListn " + memA)
-
-                }
 
 
 
@@ -202,6 +179,8 @@ function numbListn() {
     }
 
 }
+
+
 
 //operateurs
 
@@ -217,29 +196,48 @@ function operListn() {
 
             var op = e.target;
 
+            ob.b = parseFloat(recup)
+
+
+
             if (op.textContent == "+") {
 
+
+                ob.calc()
+                ob.c = 0
                 recup = 0
-                signe = 0
+                affiche.textContent = ob.a.toString()
+
             }
 
             if (op.textContent == "-") {
 
+                ob.calc()
+                ob.c = 1
                 recup = 0
-                signe = 1
+                affiche.textContent = ob.a.toString()
+
             }
 
             if (op.textContent == "*") {
 
+                ob.calc()
+                ob.c = 2
                 recup = 0
-                signe = 2
+                affiche.textContent = ob.a.toString()
+
             }
 
             if (op.textContent == "/") {
 
+                ob.calc()
+                ob.c = 3
                 recup = 0
-                signe = 3
+                affiche.textContent = ob.a.toString()
+
             }
+
+
         });
     }
 

@@ -1,8 +1,7 @@
 #cal {
     display: flex;
-    width: 400px;
-    flex-wrap: wrap;
-    flex-basis: 30%;
+    width: 500px;
+    flex-wrap: row;;
 }
 
 [classe^="but"] {
@@ -13,8 +12,13 @@
     order: 12;
 }
 
-.but1 {
-    width: 33%;
+
+#calOp {
+    flex-direction: column;
+}
+
+#calNb {
+    flex-wrap: wrap;
 }
 
 #resultat {
